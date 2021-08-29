@@ -639,7 +639,7 @@ msgid ""
 "this option allows to expand or collapse automatically the module when it is "
 "enabled or disabled."
 msgstr ""
-"esta opção permite expandir o módulo quando estiver ativado e recolhê-lo "
+"esta opção permite expandir o módulo quando estiver ativado e colapsá-lo "
 "quando estiver desabilitado."
 
 #: ../build/bin/preferences_gen.h:4815
@@ -682,7 +682,7 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:4916
 msgid "colorbalance slider block layout"
-msgstr "layout do bloco do deslizador de balanço de cores"
+msgstr "disposição do bloco do deslizador de balanço de cores"
 
 #: ../build/bin/preferences_gen.h:4927 ../build/bin/preferences_gen.h:4956
 #: ../build/bin/conf_gen.h:2786
@@ -895,7 +895,7 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:5384
 msgid "auto-apply pixel workflow defaults"
-msgstr "auto-aplicar defaults do fluxo de trabalho da pixelpipe"
+msgstr "auto-aplicar padrões do fluxo de trabalho"
 
 #: ../build/bin/preferences_gen.h:5395 ../build/bin/preferences_gen.h:5424
 #: ../build/bin/conf_gen.h:2636
@@ -929,9 +929,9 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:5449
 msgid "auto-apply chromatic adaptation defaults"
-msgstr "auto-aplicar defaults de adaptação cromática"
+msgstr "auto-aplicar padrões de adaptação cromática"
 
-#: ../build/bin/preferences_gen.h:5460 ../build/bin/conf_gen.h:2646
+#: ../build/bin/preferences_gen.h:5460 ../build/bin/conf_gen.h:2681
 msgctxt "preferences"
 msgid "modern"
 msgstr "moderno"
@@ -956,7 +956,7 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:5509
 msgid "auto-apply per camera basecurve presets"
-msgstr "auto-aplicar pré-configurações de curva base por câmera"
+msgstr "auto-aplicar predefinições de curva base por câmera"
 
 #: ../build/bin/preferences_gen.h:5523
 msgid ""
@@ -972,13 +972,13 @@ msgstr ""
 "esta opção é levada em consideração quando o default \"auto-aplicar defaults "
 "do fluxo de trabalho da pixelpipe\" é definido como \"relativo à exibição"
 "\".\n"
-"para previnir a aplicação automática de definições de curva base, \"auto-"
+"para prevenir a aplicação automática de definições de curva base, \"auto-"
 "aplicar defaults do fluxo de trabalho da pixelpipe\" deve ser configurado "
 "como \"nenhuma\""
 
 #: ../build/bin/preferences_gen.h:5545
 msgid "auto-apply sharpen"
-msgstr "auto-aplicar nitidez"
+msgstr "auto-aplicar melhoramento de nitidez"
 
 #: ../build/bin/preferences_gen.h:5559
 msgid ""
@@ -992,7 +992,7 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:5581
 msgid "detect monochrome previews"
-msgstr "detectar pré-visualizações monocromáticas"
+msgstr "detectar imagens monocromáticas"
 
 #: ../build/bin/preferences_gen.h:5595
 msgid ""
@@ -1037,7 +1037,7 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:5706
 msgid "enable disk backend for thumbnail cache"
-msgstr "habilita backend de disco para cache de miniaturas"
+msgstr "armazenar em disco cache de miniaturas"
 
 #: ../build/bin/preferences_gen.h:5720
 msgid ""
@@ -1058,7 +1058,7 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:5742
 msgid "enable disk backend for full preview cache"
-msgstr "habilita backend de disco para cache de pré-visualização"
+msgstr "armazenar em disco cache de visualização completa"
 
 #: ../build/bin/preferences_gen.h:5756
 msgid ""
@@ -1094,16 +1094,15 @@ msgstr ""
 #: ../build/bin/preferences_gen.h:5823
 msgid "minimum amount of memory (in MB) for a single buffer in tiling"
 msgstr ""
-"quantidade mínima de memória (em MB) para processamento de ladrilhos em "
-"buffer único"
+"mínimo de memória (em MB) para processamento de ladrilhos em buffer único"
 
 #: ../build/bin/preferences_gen.h:5847
 msgid ""
 "minimum amount of memory (in MB) that tiling should take for a single image "
 "buffer (needs a restart)."
 msgstr ""
-"quantidade mínima de memória (em MB) para processamento de ladrilhos em um "
-"único buffer (precisa reiniciar)."
+"mínimo de memória (em MB) para processamento de ladrilhos em um único buffer "
+"(precisa reiniciar)."
 
 #: ../build/bin/preferences_gen.h:5869
 msgid "activate OpenCL support"
@@ -1900,17 +1899,17 @@ msgstr ""
 
 #: ../build/bin/conf_gen.h:857
 msgid "ignore exif rating"
-msgstr "ignorar classificação em exif"
+msgstr "ignorar classificação exif"
 
-#: ../build/bin/conf_gen.h:858
+#: ../build/bin/conf_gen.h:893
 msgid ""
 "ignore exif rating. if not set and exif rating is found, it overrides "
 "'initial rating'"
 msgstr ""
-"ignorar classificação em exif. se desligado e uma classificação for "
-"encontrada nos dados exif, ela sobrescreverá a classificação inicial"
+"ignorar classificação exif. se desligado e uma classificação for encontrada "
+"nos dados exif, ela sobrescreverá a classificação inicial"
 
-#: ../build/bin/conf_gen.h:863
+#: ../build/bin/conf_gen.h:898
 msgid "import job"
 msgstr "trabalho de importação"
 
@@ -4570,19 +4569,19 @@ msgstr "data/hora da foto"
 
 #: ../src/common/collection.c:690 ../src/libs/metadata_view.c:129
 msgid "import timestamp"
-msgstr "marca temporal (data/hora) de importação"
+msgstr "tempo (data/hora) de importação"
 
 #: ../src/common/collection.c:691 ../src/libs/metadata_view.c:130
 msgid "change timestamp"
-msgstr "marca temporal (data/hora) de modificação"
+msgstr "tempo (data/hora) de modificação"
 
 #: ../src/common/collection.c:692 ../src/libs/metadata_view.c:131
 msgid "export timestamp"
-msgstr "marca temporal (data/hora) de exportação"
+msgstr "tempo (data/hora) de exportação"
 
 #: ../src/common/collection.c:693 ../src/libs/metadata_view.c:132
 msgid "print timestamp"
-msgstr "marca temporal (data/hora) de impressão"
+msgstr "tempo (data/hora) de impressão"
 
 #: ../src/common/collection.c:694 ../src/libs/history.c:85
 msgid "history"
@@ -8501,11 +8500,11 @@ msgstr "darktable - pré-visualização de sala escura"
 
 #: ../src/gui/gtk.c:179
 msgid "tooltips off"
-msgstr "não mostrar tooltips"
+msgstr "não mostrar dicas"
 
 #: ../src/gui/gtk.c:181
 msgid "tooltips on"
-msgstr "mostrar tooltip"
+msgstr "mostrar dicas"
 
 #: ../src/gui/gtk.c:186
 msgid ""
@@ -9427,7 +9426,7 @@ msgstr "atualizar predefinição"
 #: ../src/gui/presets.c:1081 ../src/libs/modulegroups.c:3719
 #: ../src/libs/modulegroups.c:3728
 msgid "manage module layouts"
-msgstr "gerenciar layout dos módulos"
+msgstr "gerenciar disposição dos módulos"
 
 #: ../src/gui/presets.c:1089
 msgid "manage quick presets"
@@ -12340,7 +12339,7 @@ msgstr "ajustar para casar com tom neutro"
 #. is set in _configure_slider_blocks
 #: ../src/iop/colorbalance.c:1978
 msgid "click to cycle layout"
-msgstr "clique para alternar pelos layouts"
+msgstr "clique para alternar pelas disposições"
 
 #: ../src/iop/colorbalance.c:2014
 msgid "factor"
@@ -13693,7 +13692,7 @@ msgstr ""
 
 #: ../src/iop/diffuse.c:126
 msgid "diffuse or sharpen"
-msgstr "difusão or nitidez"
+msgstr "difusão ou nitidez"
 
 #: ../src/iop/diffuse.c:131
 msgid "diffusion|deconvolution|blur|sharpening"
@@ -18035,7 +18034,7 @@ msgstr "escolha quais módulos colar na(s) imagem(ns) destino"
 
 #: ../src/libs/copy_history.c:376 ../src/libs/image.c:583
 msgid "paste"
-msgstr "cola"
+msgstr "colar"
 
 #: ../src/libs/copy_history.c:377
 msgid ""
@@ -18047,7 +18046,7 @@ msgstr ""
 
 #: ../src/libs/copy_history.c:382
 msgid "compress history"
-msgstr "comprimir histórico de ações"
+msgstr "comprimir histórico"
 
 #: ../src/libs/copy_history.c:383
 msgid ""
@@ -18116,7 +18115,7 @@ msgstr "descartar"
 #: ../src/libs/copy_history.c:447
 msgctxt "accel"
 msgid "paste"
-msgstr "cola"
+msgstr "colar"
 
 #: ../src/libs/copy_history.c:448
 msgctxt "accel"
@@ -18131,7 +18130,7 @@ msgstr "carrega arquivo associado"
 #: ../src/libs/copy_history.c:450
 msgctxt "accel"
 msgid "write sidecar files"
-msgstr "escreve arquivo associado"
+msgstr "escrever arquivo associado"
 
 #: ../src/libs/duplicate.c:60
 msgid "duplicate manager"
@@ -18149,11 +18148,11 @@ msgstr "original"
 
 #: ../src/libs/duplicate.c:543
 msgid "create a 'virgin' duplicate of the image without any development"
-msgstr "cria uma duplicata da imagem sem nenhum desenvolvimento"
+msgstr "cria uma duplicata da imagem sem nenhum processamento"
 
 #: ../src/libs/duplicate.c:546
 msgid "create a duplicate of the image with same history stack"
-msgstr "cria uma duplicata da imagem com o memso histórico"
+msgstr "cria uma duplicata da imagem com o mesmo histórico"
 
 #. Export button
 #: ../src/libs/export.c:154 ../src/libs/export.c:1379
@@ -18632,7 +18631,7 @@ msgstr ""
 #. gpx
 #: ../src/libs/geotagging.c:1776
 msgid "apply GPX track file..."
-msgstr "aplica arquivo de trilha GPX..."
+msgstr "aplicar arquivo de trilha GPX..."
 
 #: ../src/libs/geotagging.c:1777
 msgid "parses a GPX file and updates location of selected images"
@@ -18673,7 +18672,7 @@ msgstr "mostrar no mapa as imagens que combinam"
 
 #: ../src/libs/geotagging.c:1860
 msgid "select images"
-msgstr "imagens selecionadas"
+msgstr "selecionar imagens"
 
 #: ../src/libs/geotagging.c:1860
 msgid "select matching images"
@@ -18830,11 +18829,11 @@ msgstr "criar estilo do histórico"
 #: ../src/libs/history.c:108
 msgctxt "accel"
 msgid "compress history stack"
-msgstr "comprimir histórico de ações"
+msgstr "comprimir histórico"
 
 #: ../src/libs/history.c:141
 msgid "compress history stack"
-msgstr "comprimir histórico de ações"
+msgstr "comprimir histórico"
 
 #: ../src/libs/history.c:142
 msgid ""
@@ -18921,7 +18920,7 @@ msgstr "excluir histórico da imagem?"
 
 #: ../src/libs/image.c:72
 msgid "selected image[s]"
-msgstr "selecionar imagens"
+msgstr "imagens selecionadas"
 
 #: ../src/libs/image.c:176
 msgid "delete (trash)"
@@ -19000,7 +18999,7 @@ msgstr "copiar a imagem localmente"
 
 #: ../src/libs/image.c:520
 msgid "resync local copy"
-msgstr "atualiza cópia local"
+msgstr "atualizar cópia local"
 
 #: ../src/libs/image.c:520
 msgid "synchronize the image's XMP and remove the local copy"
@@ -19142,7 +19141,7 @@ msgstr "copiar a imagem localmente"
 #: ../src/libs/image.c:661
 msgctxt "accel"
 msgid "resync the local copy"
-msgstr "atualiza cópia local"
+msgstr "atualizar cópia local"
 
 #: ../src/libs/image.c:662
 msgctxt "accel"
@@ -19519,7 +19518,7 @@ msgstr "sobrepor outra imagem sobre a exibição ao vivo"
 
 #: ../src/libs/live_view.c:385 ../src/libs/metadata_view.c:123
 msgid "image id"
-msgstr "imagem id"
+msgstr "id da imagem"
 
 #: ../src/libs/live_view.c:389
 msgid "enter image id of the overlay manually"
@@ -19922,11 +19921,11 @@ msgstr "altura"
 
 #: ../src/libs/metadata_view.c:148
 msgid "export width"
-msgstr "exportar largura"
+msgstr "largura exportada"
 
 #: ../src/libs/metadata_view.c:149
 msgid "export height"
-msgstr "exportar altura"
+msgstr "altura exportada"
 
 #: ../src/libs/metadata_view.c:157
 msgid "longitude"
@@ -20031,7 +20030,7 @@ msgstr "módulos: obsoletos"
 
 #: ../src/libs/modulegroups.c:48
 msgid "last modified layout"
-msgstr "último layout modificado"
+msgstr "última disposição modificada"
 
 #: ../src/libs/modulegroups.c:197
 msgid "modulegroups"
@@ -20150,11 +20149,11 @@ msgstr "configuração anterior"
 
 #: ../src/libs/modulegroups.c:1852
 msgid "previous layout"
-msgstr "layout anterior"
+msgstr "disposição anterior"
 
 #: ../src/libs/modulegroups.c:1856
 msgid "previous config with new layout"
-msgstr "configuração anterior com novo layout"
+msgstr "configuração anterior com nova disposição"
 
 #: ../src/libs/modulegroups.c:2009 ../src/libs/modulegroups.c:2520
 msgid "remove this widget"
@@ -20559,7 +20558,7 @@ msgstr "visualizar grade"
 #. pack image dimension hbox here
 #: ../src/libs/print_settings.c:2349
 msgid "image layout"
-msgstr "layout da imagem"
+msgstr "disposição da imagem"
 
 #: ../src/libs/print_settings.c:2386
 msgid "new image area"
@@ -20585,7 +20584,7 @@ msgstr "remover a área da imagem atualmente selecionada"
 
 #: ../src/libs/print_settings.c:2398
 msgid "clear layout"
-msgstr "limpar layout"
+msgstr "limpar disposição"
 
 #: ../src/libs/print_settings.c:2399
 msgid "remove all image area from the page"
@@ -20718,7 +20717,7 @@ msgstr "instantâneo"
 #: ../src/libs/snapshots.c:105
 msgctxt "accel"
 msgid "take snapshot"
-msgstr "tira instantânea"
+msgstr "tira instantâneo"
 
 #: ../src/libs/snapshots.c:106
 msgctxt "accel"
@@ -20733,7 +20732,7 @@ msgstr "S"
 #. create take snapshot button
 #: ../src/libs/snapshots.c:382
 msgid "take snapshot"
-msgstr "tira instantânea"
+msgstr "tira instantâneo"
 
 #: ../src/libs/snapshots.c:382
 msgid ""
@@ -20873,7 +20872,7 @@ msgstr "etiquetas"
 #: ../src/libs/tagging.c:128
 msgctxt "accel"
 msgid "attach"
-msgstr "anexar"
+msgstr "adicionar"
 
 #: ../src/libs/tagging.c:129
 msgctxt "accel"
@@ -20883,7 +20882,7 @@ msgstr "remover"
 #: ../src/libs/tagging.c:130
 msgctxt "accel"
 msgid "new"
-msgstr "novo"
+msgstr "nova"
 
 #: ../src/libs/tagging.c:131
 msgctxt "accel"
@@ -21037,7 +21036,7 @@ msgstr "etiqueta %s criada"
 
 #: ../src/libs/tagging.c:2095
 msgid "attach tag"
-msgstr "anexar etiqueta"
+msgstr "adicionar etiqueta"
 
 #: ../src/libs/tagging.c:2108
 msgid "create tag..."
@@ -21124,7 +21123,7 @@ msgstr ""
 
 #: ../src/libs/tagging.c:2948
 msgid "attach"
-msgstr "anexar"
+msgstr "adicionar"
 
 #: ../src/libs/tagging.c:2948
 msgid "attach tag to all selected images"
@@ -21140,7 +21139,7 @@ msgstr "remove etiqueta das imagens selecionadas"
 
 #: ../src/libs/tagging.c:2958
 msgid "toggle list with / without hierarchy"
-msgstr "liga/desliga lista com / sem hierarquia"
+msgstr "alterna lista com/sem hierarquia"
 
 #: ../src/libs/tagging.c:2966
 msgid "toggle sort by name or by count"
@@ -21176,7 +21175,7 @@ msgid ""
 "name you entered"
 msgstr ""
 "criar nova etiqueta com o\n"
-"nome entrado"
+"nome inserido"
 
 #: ../src/libs/tagging.c:3086
 msgid "import tags from a Lightroom keyword file"
@@ -21194,11 +21193,11 @@ msgstr ""
 
 #: ../src/libs/tagging.c:3096
 msgid "toggle list / tree view"
-msgstr "liga/desliga visualização em árvore"
+msgstr "alterna visualização em árvore"
 
 #: ../src/libs/tagging.c:3104
 msgid "toggle list with / without suggestion"
-msgstr "liga/desliga lista com / sem sugestão"
+msgstr "alterna lista com/sem sugestão"
 
 #: ../src/libs/tagging.c:3228
 msgid ""
@@ -21389,7 +21388,7 @@ msgstr "bloco de informações ao passar o mouse por (s)"
 #: ../src/libs/tools/global_toolbox.c:463
 #: ../src/libs/tools/global_toolbox.c:496
 msgid "show tooltip"
-msgstr "mostrar tooltip"
+msgstr "mostrar dicas"
 
 #: ../src/libs/tools/global_toolbox.c:507
 msgid "enable this, then click on a control element to see its online help"
@@ -21505,42 +21504,42 @@ msgstr "informações da imagem"
 
 #: ../src/libs/tools/lighttable.c:117
 msgid "click to exit from full preview layout."
-msgstr "clique para sair do layout de visualização completa"
+msgstr "clique para sair do modo de visualização completa"
 
 #: ../src/libs/tools/lighttable.c:119
 msgid "click to enter full preview layout."
-msgstr "clique para entrar no layout de visualização completa"
+msgstr "clique para entrar no modo de visualização completa"
 
 #: ../src/libs/tools/lighttable.c:122
 msgid "click to enter culling layout in fixed mode."
-msgstr "clique para entrar no layout de seleção em modo fixo"
+msgstr "clique para entrar no modo de seleção em modo fixo"
 
 #: ../src/libs/tools/lighttable.c:124 ../src/libs/tools/lighttable.c:129
 msgid "click to exit culling layout."
-msgstr "clique para sair do layout de seleção"
+msgstr "clique para sair do modo de seleção"
 
 #: ../src/libs/tools/lighttable.c:127
 msgid "click to enter culling layout in dynamic mode."
-msgstr "clique para entrar no layout de seleção em modo dinâmico"
+msgstr "clique para entrar no modo de seleção em modo dinâmico"
 
 #: ../src/libs/tools/lighttable.c:262
 msgid "click to enter filemanager layout."
-msgstr "clique para entrar no layout de gerenciador de arquivos"
+msgstr "clique para entrar no modo de gerenciador de arquivos"
 
 #: ../src/libs/tools/lighttable.c:271
 msgid "click to enter zoomable lighttable layout."
-msgstr "clique para entrar no layout de mesa de luz com zoom"
+msgstr "clique para entrar no modo de mesa de luz com zoom"
 
 #. view accels
 #: ../src/libs/tools/lighttable.c:572
 msgctxt "accel"
 msgid "toggle filemanager layout"
-msgstr "alternar layout de gerenciador de arquivos"
+msgstr "alternar modo de gerenciador de arquivos"
 
 #: ../src/libs/tools/lighttable.c:573
 msgctxt "accel"
 msgid "toggle zoomable lighttable layout"
-msgstr "alternar layout de mesa de luz com zoom"
+msgstr "alternar modo de mesa de luz com zoom"
 
 #: ../src/libs/tools/lighttable.c:574
 msgctxt "accel"
@@ -21560,17 +21559,17 @@ msgstr "alterna modo de seleção com zoom"
 #: ../src/libs/tools/lighttable.c:578
 msgctxt "accel"
 msgid "toggle sticky preview mode"
-msgstr "alternar layout de visualização duradoura"
+msgstr "alternar modo de visualização duradoura"
 
 #: ../src/libs/tools/lighttable.c:579
 msgctxt "accel"
 msgid "toggle sticky preview mode with focus detection"
-msgstr "alternar layout de visualização duradoura com detecção de foco"
+msgstr "alternar modo de visualização duradoura com detecção de foco"
 
 #: ../src/libs/tools/lighttable.c:581
 msgctxt "accel"
 msgid "exit current layout"
-msgstr "sair do layout atual"
+msgstr "sair da disposição atual"
 
 #: ../src/libs/tools/module_toolbox.c:46
 msgid "module toolbox"
