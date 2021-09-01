@@ -143,6 +143,10 @@
 @define-color thumbnail_hover_bg_color @grey_85;
 @define-color thumbnail_hover_fg_color @grey_90;
 @define-color filmstrip_bg_color @darkroom_bg_color;
+@define-color timeline_bg_color shade(@filmstrip_bg_color, 0.9);
+@define-color timeline_fg_color @text_color;
+@define-color timeline_text_bg_color alpha(black, .8);
+@define-color timeline_text_fg_color alpha(white, .9);
 @define-color thumbnail_localcopy_color @grey_75;
 
 /* Brushes */
@@ -610,7 +614,17 @@ spinbutton>button
 /* Set duplicate module space in darkroom */
 #left .duplicate-ui .text-button
 {
-  margin-top: 0.28em;
+  margin-top: 0.5em;
+}
+
+#left .duplicate-ui grid > label
+{
+  margin-top: 1em;
+}
+
+#left .duplicate-ui entry
+{
+  margin: 1.25em 0 1.25em 0.5em;
 }
 
 /* Set modules name header */
@@ -2258,7 +2272,7 @@ Details :
 }
 
 /* Set top margin on active image in filmstrip */
-#thumb_main:active #thumb_back
+#thumbtable_filmstrip #thumb_main:active #thumb_back
 {
   border-top: 0.105em solid @border_color;
 }
