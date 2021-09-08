@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: darktable 2.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 17:40+0200\n"
-"PO-Revision-Date: 2021-09-05 15:01-0300\n"
+"PO-Revision-Date: 2021-09-08 07:06-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Portuguese <darktable-dev@lists.darktable.org>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.08.0\n"
+"X-Generator: Lokalize 21.08.1\n"
 "X-Poedit-Bookmarks: 722,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #: ../build/bin/preferences_gen.h:67 ../build/bin/preferences_gen.h:3517
@@ -1003,7 +1003,7 @@ msgstr ""
 
 #: ../build/bin/preferences_gen.h:5617
 msgid "show warning messages"
-msgstr "mostrar mensagens de aviso"
+msgstr "mostrar mensagens de alerta"
 
 #: ../build/bin/preferences_gen.h:5631
 msgid ""
@@ -2620,7 +2620,7 @@ msgstr "fonte LED"
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:330
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:485
 msgid "gamut compression"
-msgstr "compressão de gamut"
+msgstr "compressão de gama"
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:336
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:489
@@ -2667,11 +2667,11 @@ msgstr "personalizado"
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:515
 msgid "(AI) detect from image surfaces..."
-msgstr "(AI) detectar das superfícies da imagem..."
+msgstr "(IA) detectar das superfícies da imagem..."
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:516
 msgid "(AI) detect from image edges..."
-msgstr "(AI) detectar das bordas da imagem..."
+msgstr "(IA) detectar das bordas da imagem..."
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:517
 #: ../src/iop/channelmixerrgb.c:3477
@@ -2768,7 +2768,7 @@ msgstr "Bradford linear (ICC v4)"
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:552
 msgid "CAT16 (CIECAM16)"
-msgstr "CAT16 (CIECAM16)"
+msgstr "TAC16 (CIECAM16)"
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:553
 msgid "non-linear Bradford"
@@ -2780,7 +2780,7 @@ msgstr "XYZ "
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:555
 msgid "none (bypass)"
-msgstr "nenhum (bypass)"
+msgstr "nenhum (ignorar)"
 
 #: ../build/lib/darktable/plugins/introspection_channelmixerrgb.c:560
 msgid "version 1 (2020)"
@@ -2834,7 +2834,7 @@ msgstr "saturação de entrada"
 #: ../build/lib/darktable/plugins/introspection_colorbalance.c:126
 #: ../build/lib/darktable/plugins/introspection_colorbalance.c:211
 msgid "contrast fulcrum"
-msgstr "pivô de contraste (contrast fulcrum)"
+msgstr "pivô (fulcrum) de contraste"
 
 #: ../build/lib/darktable/plugins/introspection_colorbalance.c:132
 #: ../build/lib/darktable/plugins/introspection_colorbalance.c:215
@@ -2979,7 +2979,7 @@ msgstr "vibrância global"
 #: ../build/lib/darktable/plugins/introspection_colorbalancergb.c:399
 #: ../build/lib/darktable/plugins/introspection_colorbalancergb.c:568
 msgid "contrast gray fulcrum"
-msgstr "pivô de contraste de cinza (contrast grey fulcrum)"
+msgstr "pivô (fulcrum) de contraste de cinza"
 
 #: ../build/lib/darktable/plugins/introspection_colorbalancergb.c:405
 #: ../build/lib/darktable/plugins/introspection_colorbalancergb.c:572
@@ -4121,22 +4121,22 @@ msgstr "diâmetro de suavização"
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:210
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:333
 msgid "edges refinement/feathering"
-msgstr "refinamento/enevoamento de bordas"
+msgstr "refinamento/enevoamento das bordas"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:216
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:337
 msgid "mask quantization"
-msgstr "quantização de máscara"
+msgstr "quantização da máscara"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:222
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:341
 msgid "mask contrast compensation"
-msgstr "compressão de contraste de máscara"
+msgstr "compensação de contraste da máscara"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:228
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:345
 msgid "mask exposure compensation"
-msgstr "compensação de exposição na máscara"
+msgstr "compensação de exposição da máscara"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:240
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:353
@@ -4146,11 +4146,11 @@ msgstr "estimador de luminância"
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:246
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:357
 msgid "filter diffusion"
-msgstr "difusão de filtro"
+msgstr "difusão do filtro"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:372
 msgid "averaged guided filter"
-msgstr "filtro de média guiado"
+msgstr "filtro guiado por média"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:373
 msgid "guided filter"
@@ -4158,11 +4158,11 @@ msgstr "filtro guiado"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:374
 msgid "averaged eigf"
-msgstr "filtro guiado por média (eigf)"
+msgstr "fgie por média"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:375
 msgid "eigf"
-msgstr "eigf"
+msgstr "fgie"
 
 #: ../build/lib/darktable/plugins/introspection_toneequal.c:379
 msgid "RGB average"
@@ -6951,11 +6951,11 @@ msgstr ""
 
 #: ../src/develop/blend_gui.c:3069 ../src/libs/history.c:875
 msgid "blend fulcrum"
-msgstr "pivô de mesclagem (blend fulcrum)"
+msgstr "pivô (fulcrum) de mesclagem"
 
 #: ../src/develop/blend_gui.c:3071
 msgid "adjust the fulcrum used by some blending operations"
-msgstr "ajusta o pivô usado por algumas operações de mesclagem"
+msgstr "ajusta o pivô (fulcrum) usado por algumas operações de mesclagem"
 
 #. Add opacity/scale sliders to table
 #: ../src/develop/blend_gui.c:3078 ../src/iop/watermark.c:1302
@@ -11625,7 +11625,7 @@ msgstr ""
 #. earlier in the pipe.
 #: ../src/iop/channelmixerrgb.c:1724
 msgid "double CAT applied"
-msgstr "CAT duplo aplicado"
+msgstr "TAC duplo aplicado"
 
 #: ../src/iop/channelmixerrgb.c:1725
 msgid ""
@@ -11667,7 +11667,7 @@ msgstr "O misturador de canais RGB funciona somente com entrada RGB"
 #: ../src/iop/channelmixerrgb.c:3237
 #, c-format
 msgid "CCT: %.0f K (daylight)"
-msgstr "CCT: %.0f K (luz do dia)"
+msgstr "TCC: %.0f K (luz do dia)"
 
 #: ../src/iop/channelmixerrgb.c:3239
 msgid ""
@@ -11683,7 +11683,7 @@ msgstr ""
 #: ../src/iop/channelmixerrgb.c:3245
 #, c-format
 msgid "CCT: %.0f K (black body)"
-msgstr "CCT: %.0f K (corpo negro)"
+msgstr "TCC: %.0f K (corpo negro)"
 
 #: ../src/iop/channelmixerrgb.c:3247
 msgid ""
@@ -11699,7 +11699,7 @@ msgstr ""
 #: ../src/iop/channelmixerrgb.c:3253
 #, c-format
 msgid "CCT: %.0f K (invalid)"
-msgstr "CCT: %.0f K (inválido)"
+msgstr "TCC: %.0f K (inválido)"
 
 #: ../src/iop/channelmixerrgb.c:3255
 msgid ""
@@ -11718,7 +11718,7 @@ msgstr ""
 #: ../src/iop/channelmixerrgb.c:3262
 #, c-format
 msgid "CCT: undefined"
-msgstr "CCT: não definido"
+msgstr "TCC: não definido"
 
 #: ../src/iop/channelmixerrgb.c:3264
 msgid ""
@@ -11756,7 +11756,7 @@ msgstr "página"
 #. Page CAT
 #: ../src/iop/channelmixerrgb.c:3676
 msgid "CAT"
-msgstr "CAT"
+msgstr "TAC"
 
 #: ../src/iop/channelmixerrgb.c:3676
 msgid "chromatic adaptation transform"
@@ -14011,12 +14011,12 @@ msgstr ""
 
 #: ../src/iop/equalizer.c:306
 msgid "sharpen (strong)"
-msgstr "melhora nitidez (forte)"
+msgstr "melhorar nitidez (forte)"
 
 #: ../src/iop/equalizer.c:316
 msgctxt "equalizer"
 msgid "sharpen"
-msgstr "melhora nitidez"
+msgstr "melhorar nitidez"
 
 #: ../src/iop/equalizer.c:322
 msgid "null"
@@ -16696,7 +16696,7 @@ msgstr "ajuste saturação de realces"
 #: ../src/iop/sharpen.c:73
 msgctxt "modulename"
 msgid "sharpen"
-msgstr "melhora nitidez"
+msgstr "melhorar nitidez"
 
 #: ../src/iop/sharpen.c:93
 msgid "sharpen the details in the image using a standard UnSharp Mask (USM)"
@@ -16716,7 +16716,7 @@ msgstr "quasi-linear, Lab, relativo à exibição ou à cena"
 #. restrict to raw images
 #: ../src/iop/sharpen.c:104 ../src/iop/sharpen.c:108
 msgid "sharpen"
-msgstr "melhora nitidez"
+msgstr "melhorar nitidez"
 
 #: ../src/iop/sharpen.c:461
 msgid "spatial extent of the unblurring"
@@ -17270,7 +17270,7 @@ msgstr ""
 #. Masking options
 #: ../src/iop/toneequal.c:3189
 msgid "masking"
-msgstr "máscaras"
+msgstr "máscara"
 
 #: ../src/iop/toneequal.c:3193
 msgid ""
@@ -17346,7 +17346,7 @@ msgstr ""
 
 #: ../src/iop/toneequal.c:3225
 msgid "mask post-processing"
-msgstr "pós-processamento de máscara"
+msgstr "pós-processamento da máscara"
 
 #: ../src/iop/toneequal.c:3232
 msgid ""
