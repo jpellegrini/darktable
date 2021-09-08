@@ -2,7 +2,7 @@ name: Mark stale issues and pull requests
 
 on:
   schedule:
-  - cron: "0 0 * * *"
+  - cron: "0 */6 * * *"
 
 jobs:
   stale:
@@ -23,5 +23,6 @@ jobs:
         days-before-close: 365
         remove-stale-when-updated: true
         exempt-all-milestones: true
-        exempt-pr-label: 'bugfix,wip'
-        exempt-issue-label: 'scope: camera support,bugfix: wip'
+        exempt-pr-labels: 'bugfix,wip'
+        exempt-issue-labels: 'scope: camera support,bugfix: wip'
+        operations-per-run: 300

@@ -397,7 +397,11 @@ static void _darkroom_pickers_draw(dt_view_t *self, cairo_t *cri,
 
     // draw the actual color sampled
     // FIXME: if an area sample is selected, when selected should fill it with colorpicker color?
-    // FIXME: is this overlay always drawn after the current preview has been calculated?
+    // NOTE: The sample may be based on outdated data, but still
+    // display as it will update eventually. If we only drew on valid
+    // data, swatches on point live samples would flicker when the
+    // primary sample was drawn, and the primary sample swatch would
+    // flicker when an iop is adjusted.
     if(sample->size == DT_LIB_COLORPICKER_SIZE_POINT)
     {
       if(sample == selected_sample)
@@ -407,7 +411,7 @@ static void _darkroom_pickers_draw(dt_view_t *self, cairo_t *cri,
       else
         cairo_arc(cri, sample->point[0] * wd, sample->point[1] * ht, half_px, 0., 2. * M_PI);
 
-      set_color(cri, sample->rgb_display);
+      set_color(cri, sample->swatch);
       cairo_fill(cri);
     }
   }
@@ -748,6 +752,7 @@ void expose(
                                  || dt_lib_gui_get_expanded(dt_lib_get_module("masks"));
 
   // draw colorpicker for in focus module or execute module callback hook
+  // FIXME: draw picker in gui_post_expose() hook in libs/colorpicker.c -- catch would be that live samples would appear over guides, softproof/gamut text overlay would be hidden by picker
   if(dt_iop_color_picker_is_visible(dev))
   {
     GSList samples = { .data = darktable.lib->proxy.colorpicker.primary_sample, .next = NULL };
@@ -879,12 +884,8 @@ static void dt_dev_change_image(dt_develop_t *dev, const int32_t imgid)
   }
 
   // disable color picker when changing image
-  if(dev->gui_module)
-  {
-    dev->gui_module->request_color_pick = DT_REQUEST_COLORPICK_OFF;
-  }
-  darktable.lib->proxy.colorpicker.primary_sample->size = DT_LIB_COLORPICKER_SIZE_NONE;
-  darktable.lib->proxy.colorpicker.picker_proxy = NULL;
+  if(darktable.lib->proxy.colorpicker.picker_proxy)
+    dt_iop_color_picker_reset(darktable.lib->proxy.colorpicker.picker_proxy->module, FALSE);
 
   // update aspect ratio
   if(dev->preview_pipe->backbuf && dev->preview_status == DT_DEV_PIXELPIPE_VALID)
@@ -1494,7 +1495,7 @@ static void _iso_12646_quickbutton_clicked(GtkWidget *w, gpointer user_data)
 /* overlay color */
 static void _guides_quickbutton_clicked(GtkWidget *widget, gpointer user_data)
 {
-  dt_guides_button_toggled();
+  dt_guides_button_toggled(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)));
   dt_control_queue_redraw_center();
 }
 
@@ -2196,9 +2197,6 @@ static gboolean _quickbutton_press_release(GtkWidget *button, GdkEventButton *ev
   if((event->type == GDK_BUTTON_PRESS && event->button == 3) ||
      (event->type == GDK_BUTTON_RELEASE && event->time - start_time > 600))
   {
-    if(!popover)
-      popover = dt_guides_popover(button);
-
     gtk_popover_set_relative_to(GTK_POPOVER(popover), button);
 
     g_object_set(G_OBJECT(popover), "transitions-enabled", FALSE, NULL);
@@ -2263,6 +2261,8 @@ void gui_init(dt_view_t *self)
   g_signal_connect(G_OBJECT(dev->iso_12646.button), "clicked", G_CALLBACK(_iso_12646_quickbutton_clicked), dev);
   dt_view_manager_module_toolbox_add(darktable.view_manager, dev->iso_12646.button, DT_VIEW_DARKROOM);
 
+  GtkWidget *colorscheme, *mode;
+
   /* create rawoverexposed popup tool */
   {
     // the button
@@ -2286,19 +2286,16 @@ void gui_init(dt_view_t *self)
 
     /** let's fill the encapsulating widgets */
     /* mode of operation */
-    GtkWidget *mode = dt_bauhaus_combobox_new_action(DT_ACTION(self));
-    dt_bauhaus_widget_set_label(mode, N_("raw overexposed"), N_("mode"));
-    dt_bauhaus_combobox_add(mode, _("mark with CFA color"));
-    dt_bauhaus_combobox_add(mode, _("mark with solid color"));
-    dt_bauhaus_combobox_add(mode, _("false color"));
-    dt_bauhaus_combobox_set(mode, dev->rawoverexposed.mode);
-    gtk_widget_set_tooltip_text(mode, _("select how to mark the clipped pixels"));
-    g_signal_connect(G_OBJECT(mode), "value-changed", G_CALLBACK(rawoverexposed_mode_callback), dev);
+    DT_BAUHAUS_COMBOBOX_NEW_FULL(mode, self, N_("raw overexposed"), N_("mode"),
+                                 _("select how to mark the clipped pixels"),
+                                 dev->rawoverexposed.mode, rawoverexposed_mode_callback, dev,
+                                 N_("mark with CFA color"), N_("mark with solid color"), N_("false color"));
     gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(mode), TRUE, TRUE, 0);
     gtk_widget_set_state_flags(mode, GTK_STATE_FLAG_SELECTED, TRUE);
 
     /* color scheme */
-    GtkWidget *colorscheme = dt_bauhaus_combobox_new_action(DT_ACTION(self));
+    // FIXME can't use DT_BAUHAUS_COMBOBOX_NEW_FULL because of (unnecessary?) translation context
+    colorscheme = dt_bauhaus_combobox_new_action(DT_ACTION(self));
     dt_bauhaus_widget_set_label(colorscheme, N_("raw overexposed"), N_("color scheme"));
     dt_bauhaus_combobox_add(colorscheme, C_("solidcolor", "red"));
     dt_bauhaus_combobox_add(colorscheme, C_("solidcolor", "green"));
@@ -2345,28 +2342,18 @@ void gui_init(dt_view_t *self)
 
     /** let's fill the encapsulating widgets */
     /* preview mode */
-    GtkWidget *mode = dt_bauhaus_combobox_new_action(DT_ACTION(self));
-    dt_bauhaus_widget_set_label(mode, N_("overexposed"), N_("clipping preview mode"));
-    dt_bauhaus_combobox_add(mode, _("full gamut"));
-    dt_bauhaus_combobox_add(mode, _("any RGB channel"));
-    dt_bauhaus_combobox_add(mode, _("luminance only"));
-    dt_bauhaus_combobox_add(mode, _("saturation only"));
-    dt_bauhaus_combobox_set(mode, dev->overexposed.mode);
-    gtk_widget_set_tooltip_text(mode, _("select the metric you want to preview\n"
-                                        "full gamut is the combination of all other modes\n"));
-    g_signal_connect(G_OBJECT(mode), "value-changed", G_CALLBACK(mode_callback), dev);
+    DT_BAUHAUS_COMBOBOX_NEW_FULL(mode, self, N_("overexposed"), N_("clipping preview mode"),
+                                 _("select the metric you want to preview\nfull gamut is the combination of all other modes"),
+                                 dev->overexposed.mode, mode_callback, dev,
+                                 N_("full gamut"), N_("any RGB channel"), N_("luminance only"), N_("saturation only"));
     gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(mode), TRUE, TRUE, 0);
     gtk_widget_set_state_flags(mode, GTK_STATE_FLAG_SELECTED, TRUE);
 
     /* color scheme */
-    GtkWidget *colorscheme = dt_bauhaus_combobox_new_action(DT_ACTION(self));
-    dt_bauhaus_widget_set_label(colorscheme, N_("overexposed"), N_("color scheme"));
-    dt_bauhaus_combobox_add(colorscheme, _("black & white"));
-    dt_bauhaus_combobox_add(colorscheme, _("red & blue"));
-    dt_bauhaus_combobox_add(colorscheme, _("purple & green"));
-    dt_bauhaus_combobox_set(colorscheme, dev->overexposed.colorscheme);
-    gtk_widget_set_tooltip_text(colorscheme, _("select colors to indicate clipping"));
-    g_signal_connect(G_OBJECT(colorscheme), "value-changed", G_CALLBACK(colorscheme_callback), dev);
+    DT_BAUHAUS_COMBOBOX_NEW_FULL(colorscheme, self, N_("overexposed"), N_("color scheme"),
+                                 _("select colors to indicate clipping"),
+                                 dev->overexposed.colorscheme, colorscheme_callback, dev,
+                                 N_("black & white"), N_("red & blue"), N_("purple & green"));
     gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(colorscheme), TRUE, TRUE, 0);
     gtk_widget_set_state_flags(colorscheme, GTK_STATE_FLAG_SELECTED, TRUE);
 
@@ -2576,12 +2563,13 @@ void gui_init(dt_view_t *self)
   {
     // the button
     darktable.view_manager->guides_toggle = dtgtk_togglebutton_new(dtgtk_cairo_paint_grid, CPF_STYLE_FLAT, NULL);
-    dt_action_define(&self->actions, NULL, "show guide lines", darktable.view_manager->guides_toggle, &dt_action_def_toggle);
+    dt_action_define(&self->actions, "guide lines", "toggle", darktable.view_manager->guides_toggle, &dt_action_def_toggle);
     gtk_widget_set_tooltip_text(darktable.view_manager->guides_toggle,
                                 _("toggle guide lines\nright click for guides options"));
+    GtkWidget *popover = dt_guides_popover(self, darktable.view_manager->guides_toggle);
     g_signal_connect(G_OBJECT(darktable.view_manager->guides_toggle), "clicked",
                      G_CALLBACK(_guides_quickbutton_clicked), dev);
-    connect_button_press_release(darktable.view_manager->guides_toggle, NULL);
+    connect_button_press_release(darktable.view_manager->guides_toggle, popover);
     dt_view_manager_module_toolbox_add(darktable.view_manager, darktable.view_manager->guides_toggle,
                                        DT_VIEW_DARKROOM | DT_VIEW_TETHERING);
     // we want to update button state each time the view change
@@ -3094,8 +3082,8 @@ void enter(dt_view_t *self)
 void leave(dt_view_t *self)
 {
   dt_iop_color_picker_cleanup();
-  darktable.lib->proxy.colorpicker.primary_sample->size = DT_LIB_COLORPICKER_SIZE_NONE;
-  darktable.lib->proxy.colorpicker.picker_proxy = NULL;
+  if(darktable.lib->proxy.colorpicker.picker_proxy)
+    dt_iop_color_picker_reset(darktable.lib->proxy.colorpicker.picker_proxy->module, FALSE);
 
   _unregister_modules_drag_n_drop(self);
 
@@ -3332,21 +3320,10 @@ void mouse_moved(dt_view_t *self, double x, double y, double pressure, int which
       }
       else if(sample->size == DT_LIB_COLORPICKER_SIZE_POINT)
       {
-        // slight optimization: at higher zoom levels in particular,
-        // no need to update unless are sampling a different preview
-        // pipe pixel
-        // FIXME: this makes less sense for an iop which may transform coordinates
-        const float wd = (float)dev->preview_pipe->backbuf_width;
-        const float ht = (float)dev->preview_pipe->backbuf_height;
-        const int prior_x = sample->point[0] * wd, prior_y = sample->point[1] * ht;
         sample->point[0] = .5f + zoom_x;
         sample->point[1] = .5f + zoom_y;
-        const int cur_x = sample->point[0] * wd, cur_y = sample->point[1] * ht;
-        if(prior_x != cur_x || prior_y != cur_y)
-          dev->preview_status = DT_DEV_PIXELPIPE_DIRTY;
+        dev->preview_status = DT_DEV_PIXELPIPE_DIRTY;
       }
-      // in case have moved cursor out of center view and back, hide the cursor again
-      dt_control_change_cursor(GDK_BLANK_CURSOR);
     }
     dt_control_queue_redraw_center();
     return;
@@ -3406,8 +3383,8 @@ int button_released(dt_view_t *self, double x, double y, int which, uint32_t sta
     {
       dev->preview_status = DT_DEV_PIXELPIPE_DIRTY;
       dt_control_queue_redraw_center();
+      dt_control_change_cursor(GDK_LEFT_PTR);
     }
-    dt_control_change_cursor(GDK_LEFT_PTR);
     return 1;
   }
   // masks
@@ -3460,6 +3437,7 @@ int button_pressed(dt_view_t *self, double x, double y, double pressure, int whi
         const float delta_x = 0.01f;
         const float delta_y = delta_x * (float)dev->pipe->processed_width / (float)dev->pipe->processed_height;
 
+        // FIXME: here and in mouse move use to dt_lib_colorpicker_set_{box_area,point} interface? -- would require a different hack for figuring out base of the drag
         // hack: for box pickers, these represent the "base" point being dragged
         sample->point[0] = zoom_x;
         sample->point[1] = zoom_y;
@@ -3500,12 +3478,12 @@ int button_pressed(dt_view_t *self, double x, double y, double pressure, int whi
             sample->box[2] = fminf(1.0, zoom_x + delta_x);
             sample->box[3] = fminf(1.0, zoom_y + delta_y);
           }
+          dt_control_change_cursor(GDK_FLEUR);
         }
         else if(sample->size == DT_LIB_COLORPICKER_SIZE_POINT)
         {
           dev->preview_status = DT_DEV_PIXELPIPE_DIRTY;
         }
-        dt_control_change_cursor(GDK_BLANK_CURSOR);
       }
       dt_control_queue_redraw_center();
       return 1;
@@ -3880,7 +3858,7 @@ void init_key_accels(dt_view_t *self)
   dt_accel_register_view(self, NC_("accel", "show drawn masks"), 0, 0);
 
   // toggle visibility of guide lines
-  dt_accel_register_view(self, NC_("accel", "show guide lines"), GDK_KEY_g, 0);
+  dt_accel_register_view(self, NC_("accel", "guide lines/toggle"), GDK_KEY_g, 0);
 
   // toggle visibility of second window
   dt_accel_register_view(self, NC_("accel", "second window"), 0, 0);
