@@ -79,9 +79,6 @@ changes (where available).
   by fixed offsets, so a stack stays valid across module versions, and
   renders run on a throwaway duplicate so the source image is never
   modified.
-  
-
-
 
 ## UI/UX Improvements
 
@@ -259,6 +256,9 @@ changes (where available).
 
 - Fixed corrupted output or a crash when an AI model returns more data
   than darktable reserved for it, affecting object masks and Lua models.
+
+- Fixed snapshots being applied onto the original image instead of the
+  current image.
 
 ## Lua
 
