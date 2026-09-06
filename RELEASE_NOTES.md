@@ -247,6 +247,9 @@ changes (where available).
 - Fixed wrong output or a crash from an export pattern containing an
   unclosed variable substitution, such as "$(FILE_NAME/foo".
 
+- Fixed corrupted output or a crash when an AI model returns more data
+  than darktable reserved for it, affecting object masks and Lua models.
+
 ## Lua
 
 ### API Version
