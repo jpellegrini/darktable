@@ -483,7 +483,9 @@ typedef struct dt_iop_spektrafilm_data_t
      nothing to check afterwards. */
   const sf_sim_gpu_t *grain_cl_built_for;
   int grain_cl_devid;
+#ifdef HAVE_OPENCL
   cl_mem grain_cl_dmax, grain_cl_npart, grain_cl_dmin, grain_cl_total, grain_cl_curve;
+#endif
 } dt_iop_spektrafilm_data_t;
 
 typedef struct dt_iop_spektrafilm_global_data_t
@@ -901,11 +903,13 @@ void cleanup_pipe(dt_iop_module_t *self,
   {
     if(d->gpu) sf_sim_gpu_free(d->gpu);
     if(d->sim) sf_sim_free(d->sim);
+#ifdef HAVE_OPENCL
     if(d->grain_cl_dmax) dt_opencl_release_mem_object(d->grain_cl_dmax);
     if(d->grain_cl_npart) dt_opencl_release_mem_object(d->grain_cl_npart);
     if(d->grain_cl_dmin) dt_opencl_release_mem_object(d->grain_cl_dmin);
     if(d->grain_cl_total) dt_opencl_release_mem_object(d->grain_cl_total);
     if(d->grain_cl_curve) dt_opencl_release_mem_object(d->grain_cl_curve);
+#endif
     dt_pthread_mutex_destroy(&d->lock);
   }
   free(piece->data);
@@ -1076,12 +1080,14 @@ static sf_sim_t *_ensure_sim(dt_iop_spektrafilm_data_t *d,
     /* these were uploaded from this gpu's grain_layer_* tables; release them
        now so process_cl() re-uploads fresh ones from the new gpu instead of
        reusing now-stale content. */
+#ifdef HAVE_OPENCL
     if(d->grain_cl_dmax) { dt_opencl_release_mem_object(d->grain_cl_dmax); d->grain_cl_dmax = NULL; }
     if(d->grain_cl_npart) { dt_opencl_release_mem_object(d->grain_cl_npart); d->grain_cl_npart = NULL; }
     if(d->grain_cl_dmin) { dt_opencl_release_mem_object(d->grain_cl_dmin); d->grain_cl_dmin = NULL; }
     if(d->grain_cl_total) { dt_opencl_release_mem_object(d->grain_cl_total); d->grain_cl_total = NULL; }
     if(d->grain_cl_curve) { dt_opencl_release_mem_object(d->grain_cl_curve); d->grain_cl_curve = NULL; }
     d->grain_cl_built_for = NULL;
+#endif
   }
   if(d->sim)
   {
