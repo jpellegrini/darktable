@@ -119,6 +119,11 @@ changes (where available).
 - Don't invalidate the pixelpipe cache on every commit
   when a raster mask is used.
 
+- Sped up editing an image that uses a detail mask. Every history change
+  used to discard the cached output of every module from demosaic onwards,
+  so adjusting a mask or toggling the mask overlay recomputed most of the
+  pipeline each time.
+
 ## Other Changes
 
 - Added a new collection filter for the original image dimensions.
