@@ -102,7 +102,7 @@ int main(int argc, char **argv)
   // tool descriptions and schemas live in the data folder, editable without a rebuild
   char datadir[PATH_MAX] = { 0 };
   dt_loc_get_datadir(datadir, sizeof(datadir));
-  gchar *tools_file = g_build_filename(datadir, "mcp-tools.json", NULL);
+  gchar *tools_file = g_build_filename(datadir, "mcp_tools.json", NULL);
   if(mcp_tools_load(tools_file) < 0)
     fprintf(stderr, "darktable-mcp: no tools available (could not load '%s')\n",
             tools_file);

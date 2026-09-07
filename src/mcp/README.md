@@ -189,8 +189,8 @@ so the server stays correct across module versions.
 ## Customizing tool descriptions & schemas
 
 Each tool's presentation — `name`, `description`, `inputSchema` — lives in
-`mcp-tools.json` in darktable's data folder (installed to
-`share/darktable/mcp-tools.json`, alongside `noiseprofiles.json` etc.), loaded at
+`mcp_tools.json` in darktable's data folder (installed to
+`share/darktable/mcp_tools.json`, alongside `noiseprofiles.json` etc.), loaded at
 startup via `dt_loc_get_datadir()`. Only the tool *behaviour* (the handler) is
 compiled into the binary, matched to a metadata entry by `name`.
 

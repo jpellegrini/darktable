@@ -320,7 +320,7 @@ typedef struct mcp_handler_t
 } mcp_handler_t;
 
 // tool behaviour lives in C; the presentation (name/description/inputSchema)
-// is loaded from mcp-tools.json in the data folder and matched here by name
+// is loaded from mcp_tools.json in the data folder and matched here by name
 static const mcp_handler_t _handlers[] = {
   { "list_modules",  _tool_list_modules },
   { "module_schema", _tool_module_schema },
@@ -338,7 +338,7 @@ static const mcp_handler_t _handlers[] = {
 };
 static const size_t _n_handlers = sizeof(_handlers) / sizeof(_handlers[0]);
 
-// tool metadata array (name/description/inputSchema) loaded from mcp-tools.json
+// tool metadata array (name/description/inputSchema) loaded from mcp_tools.json
 static JsonNode *_tools_meta = NULL;
 
 int mcp_tools_load(const char *path)
